@@ -14,6 +14,8 @@ public class ClientDao {
             return null;
         } else {
             return Client.builder()
+                    .login("Ivan")
+                    .password("PasswordIvan")
                     .clientname("Ivan")
                     .age(25)
                     .phoneNumber("123-45-67")

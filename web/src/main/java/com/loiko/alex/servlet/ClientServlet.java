@@ -2,6 +2,7 @@ package com.loiko.alex.servlet;
 
 import com.loiko.alex.model.Client;
 import com.loiko.alex.service.ClientService;
+import com.loiko.alex.util.JSPPathUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ public class ClientServlet extends HttpServlet {
         Client defaultClient = ClientService.getInstance().getDefaultClient();
         req.setAttribute("client", defaultClient);
         getServletContext()
-                .getRequestDispatcher("/WEB-INF/jsp/client.jsp")
+                .getRequestDispatcher(JSPPathUtil.get("client"))
                 .forward(req, resp);
     }
 }

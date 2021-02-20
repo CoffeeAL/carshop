@@ -13,8 +13,32 @@
     <artifactId>database</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+        <hibernate.version>5.4.28.Final</hibernate.version>
+        <postgresql.version>42.2.19</postgresql.version>
+        <tomcat.version>10.0.2</tomcat.version>
+    </properties>
+
     <build>
         <finalName>database</finalName>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

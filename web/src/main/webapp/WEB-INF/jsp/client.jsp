@@ -7,6 +7,7 @@
 <div>
     <p>Clientname: </p>
     <p>${requestScope.client.clientname}</p>
+<%--    <p>${requestScope.client.age}</p>--%>
 </div>
 </body>
 </html>
