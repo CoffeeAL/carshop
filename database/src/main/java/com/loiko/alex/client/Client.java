@@ -1,5 +1,6 @@
 package com.loiko.alex.client;
 
+import com.loiko.alex.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,11 +12,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "client", schema = "carshop_storage")
-public class Client {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Client extends BaseEntity<Long> {
 
     @Column(name = "login")
     private String login;
@@ -23,24 +20,6 @@ public class Client {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "name")
-    private String clientName;
-
-    @Column(name = "age")
-    private Integer age;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
     @Column(name = "email")
     private String email;
-
-    public Client(String login, String password, String clientName, Integer age, String phoneNumber, String email) {
-        this.login = login;
-        this.password = password;
-        this.clientName = clientName;
-        this.age = age;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
 }

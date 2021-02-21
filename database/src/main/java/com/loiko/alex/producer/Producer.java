@@ -1,5 +1,6 @@
 package com.loiko.alex.producer;
 
+import com.loiko.alex.BaseEntity;
 import com.loiko.alex.country.Country;
 import lombok.*;
 
@@ -12,15 +13,12 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "producer", schema = "carshop_storage")
-public class Producer {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Producer extends BaseEntity<Long> {
 
     @Column(name = "producer_name")
     private String producerName;
 
-    @Column(name = "country_id")
+    @Column(name = "country_name")
+    @Enumerated(EnumType.STRING)
     private Country country;
 }
