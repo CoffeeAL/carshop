@@ -1,6 +1,6 @@
 package com.loiko.alex;
 
-import com.loiko.alex.model.Client;
+import com.loiko.alex.client.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

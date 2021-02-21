@@ -1,6 +1,5 @@
-package com.loiko.alex.dao;
+package com.loiko.alex.client;
 
-import com.loiko.alex.model.Client;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,7 @@ public class ClientDao {
             return Client.builder()
                     .login("Ivan")
                     .password("PasswordIvan")
-                    .clientname("Ivan")
+                    .clientName("Ivan")
                     .age(25)
                     .phoneNumber("123-45-67")
                     .email("ivan@gmail.com")

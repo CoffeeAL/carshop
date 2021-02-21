@@ -1,6 +1,6 @@
 package com.loiko.alex.servlet;
 
-import com.loiko.alex.model.Client;
+import com.loiko.alex.client.Client;
 import com.loiko.alex.service.ClientService;
 import com.loiko.alex.util.JSPPathUtil;
 

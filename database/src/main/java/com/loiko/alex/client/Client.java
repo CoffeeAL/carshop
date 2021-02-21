@@ -1,4 +1,4 @@
-package com.loiko.alex.model;
+package com.loiko.alex.client;
 
 import lombok.*;
 
@@ -24,7 +24,7 @@ public class Client {
     private String password;
 
     @Column(name = "name")
-    private String clientname;
+    private String clientName;
 
     @Column(name = "age")
     private Integer age;
@@ -35,10 +35,10 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    public Client(String login, String password, String clientname, Integer age, String phoneNumber, String email) {
+    public Client(String login, String password, String clientName, Integer age, String phoneNumber, String email) {
         this.login = login;
         this.password = password;
-        this.clientname = clientname;
+        this.clientName = clientName;
         this.age = age;
         this.phoneNumber = phoneNumber;
         this.email = email;

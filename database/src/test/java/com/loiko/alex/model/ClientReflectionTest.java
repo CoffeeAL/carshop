@@ -1,5 +1,6 @@
 package com.loiko.alex.model;
 
+import com.loiko.alex.client.Client;
 import org.junit.Test;
 
 import javax.persistence.Column;
