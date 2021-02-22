@@ -15,9 +15,6 @@ public class ClientDao {
             return Client.builder()
                     .login("Ivan")
                     .password("PasswordIvan")
-                    .clientName("Ivan")
-                    .age(25)
-                    .phoneNumber("123-45-67")
                     .email("ivan@gmail.com")
                     .build();
         }
