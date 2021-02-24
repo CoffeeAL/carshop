@@ -12,7 +12,7 @@ public class OrmDemo {
         @Cleanup SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         @Cleanup Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(Client.of("Ivan", "PasswordIvan", "ivan@gmail.com"));
+        session.save(new Client("Mike", "Mike's password", "my_name_is_Mike@gmail.com"));
         session.getTransaction().commit();
     }
 }

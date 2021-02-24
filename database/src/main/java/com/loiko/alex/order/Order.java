@@ -1,10 +1,15 @@
 package com.loiko.alex.order;
 
-import com.loiko.alex.BaseEntity;
+import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.client.Client;
 import com.loiko.alex.paymentform.PaymentForm;
+import com.loiko.alex.sparepart.SparePart;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -12,17 +17,24 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "spare_part", schema = "carshop_storage")
-public class Order extends BaseEntity<Long> {
+@Table(name = "order", schema = "carshop_storage")
+public class Order implements BaseEntity<Long> {
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     @Column(name = "payment_form")
     @Enumerated(EnumType.STRING)
     private PaymentForm paymentForm;
 
-    //TODO сделать дату
     @Column(name = "date")
-    private String date;
+    private LocalDate date;
+
+    @ManyToMany(mappedBy = "orders")
+    private Set<SparePart> spareParts = new HashSet<>();
 }

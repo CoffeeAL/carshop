@@ -1,5 +1,6 @@
-DROP TABLE IF EXISTS carshop_storage.item_in_order;
+DROP TABLE IF EXISTS carshop_storage.order_spare_part;
 DROP TABLE IF EXISTS carshop_storage.order;
+DROP TABLE IF EXISTS carshop_storage.spare_part_car;
 DROP TABLE IF EXISTS carshop_storage.spare_part;
 DROP TABLE IF EXISTS carshop_storage.car;
 DROP TABLE IF EXISTS carshop_storage.producer;
@@ -53,6 +54,13 @@ CREATE TABLE carshop_storage.spare_part
     price           NUMERIC(6, 2)
 );
 
+CREATE TABLE carshop_storage.spare_part_car
+(
+    spare_part_id BIGINT  NOT NULL REFERENCES carshop_storage.spare_part (id),
+    car_id        BIGINT NOT NULL REFERENCES carshop_storage.car (id),
+    UNIQUE (spare_part_id, car_id)
+);
+
 CREATE TABLE carshop_storage.order
 (
     id           BIGSERIAL PRIMARY KEY,
@@ -61,9 +69,9 @@ CREATE TABLE carshop_storage.order
     payment_form CHARACTER VARYING(20)
 );
 
-CREATE TABLE carshop_storage.item_in_order
+CREATE TABLE carshop_storage.order_spare_part
 (
-    id            BIGSERIAL PRIMARY KEY,
     order_id      BIGINT REFERENCES carshop_storage.order (id),
-    spare_part_id BIGINT REFERENCES carshop_storage.spare_part (id)
+    spare_part_id BIGINT REFERENCES carshop_storage.spare_part (id),
+    UNIQUE (order_id, spare_part_id)
 );

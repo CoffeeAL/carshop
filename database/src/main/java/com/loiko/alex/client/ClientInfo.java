@@ -1,9 +1,10 @@
 package com.loiko.alex.client;
 
-import com.loiko.alex.BaseEntity;
+import com.loiko.alex.baseentity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @EqualsAndHashCode(of = "id")
@@ -12,15 +13,20 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "client_info", schema = "carshop_storage")
-public class ClientInfo extends BaseEntity<Long> {
+public class ClientInfo implements BaseEntity<Long> {
 
-    @Column(name = "client_id")
-    private Long clientId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "name")
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", nullable = false)
     private String surname;
 
     @Column(name = "age")
@@ -32,7 +38,6 @@ public class ClientInfo extends BaseEntity<Long> {
     @Column(name = "hobby")
     private String hobby;
 
-    @Column(name = "date")
-    //TODO сделать дату
-    private String date;
+    @Column(name = "birth_date")
+    private LocalDate date;
 }

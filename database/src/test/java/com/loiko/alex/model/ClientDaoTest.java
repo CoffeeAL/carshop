@@ -35,7 +35,7 @@ public class ClientDaoTest {
     @Test
     public void checkSaveEntity() {
         try (Session session = FACTORY.openSession()) {
-            Serializable id = session.save(Client.of("Ivan123", "Pass123", "vano@gmail.com"));
+            Serializable id = session.save(new Client("Ivan123", "Pass123", "vano@gmail.com"));
             assertNotNull(id);
         }
     }
@@ -43,7 +43,7 @@ public class ClientDaoTest {
     @Test
     public void checkGetById() {
         try (Session session = FACTORY.openSession()) {
-            Serializable savedId = session.save(Client.of("Ivan456", "Pass456","vano@gmail.com"));
+            Serializable savedId = session.save(new Client("Ivan456", "Pass456","vano@gmail.com"));
             assertNotNull(savedId);
             Client saveClient = session.find(Client.class, savedId);
             assertNotNull(saveClient);
