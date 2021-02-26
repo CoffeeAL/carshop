@@ -33,9 +33,6 @@ public class SparePart implements BaseEntity<Long> {
     @JoinColumn(name = "producer_id")
     private Producer producer;
 
-    @Column(name = "car_id")
-    private Long carId;
-
     @Column(name = "description")
     private String description;
 

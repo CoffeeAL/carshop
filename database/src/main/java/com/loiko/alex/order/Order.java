@@ -1,7 +1,7 @@
 package com.loiko.alex.order;
 
 import com.loiko.alex.baseentity.BaseEntity;
-import com.loiko.alex.client.Client;
+import com.loiko.alex.user.User;
 import com.loiko.alex.paymentform.PaymentForm;
 import com.loiko.alex.sparepart.SparePart;
 import lombok.*;
@@ -26,7 +26,7 @@ public class Order implements BaseEntity<Long> {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Client client;
+    private User client;
 
     @Column(name = "payment_form")
     @Enumerated(EnumType.STRING)

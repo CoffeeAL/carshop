@@ -1,7 +1,7 @@
 package com.loiko.alex.service;
 
-import com.loiko.alex.client.ClientDao;
-import com.loiko.alex.client.Client;
+import com.loiko.alex.user.ClientDao;
+import com.loiko.alex.user.User;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class ClientService {
 //        test.setAge(45);
 //    }
 
-    public Client getDefaultClient() {
+    public User getDefaultClient() {
         return ClientDao.getInstance().getDefaultClient();
 //        return test;
     }

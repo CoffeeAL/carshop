@@ -1,6 +1,6 @@
 package com.loiko.alex.model;
 
-import com.loiko.alex.client.Client;
+import com.loiko.alex.user.User;
 import org.junit.Test;
 
 import javax.persistence.Column;
@@ -11,7 +11,7 @@ public class ClientReflectionTest {
 
     @Test
     public void checkAnnotation() {
-        Table annotation = Client.class.getAnnotation(Table.class);
+        Table annotation = User.class.getAnnotation(Table.class);
         System.out.println(annotation.name());
         System.out.println(annotation.schema());
         System.out.println("INSERT INTO " + annotation.schema() + "." + annotation.name() + " VALUES ()");
@@ -19,7 +19,7 @@ public class ClientReflectionTest {
 
     @Test
     public void checkColumnAnnotation() throws NoSuchFieldException {
-        Field nameField = Client.class.getDeclaredField("name");
+        Field nameField = User.class.getDeclaredField("name");
         Column annotation = nameField.getAnnotation(Column.class);
         if (annotation == null) {
             System.out.println(nameField.getName());
