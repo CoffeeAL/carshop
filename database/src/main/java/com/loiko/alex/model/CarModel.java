@@ -1,6 +1,7 @@
 package com.loiko.alex.model;
 
 import com.loiko.alex.brand.Brand;
+import com.loiko.alex.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ import javax.persistence.Enumerated;
 @AllArgsConstructor
 @Builder
 @Embeddable
-public class CarModel {
+public class CarModel{
 
     @Column(name = "brand")
     @Enumerated(EnumType.STRING)

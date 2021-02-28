@@ -1,4 +1,4 @@
-package com.loiko.alex.baseentity;
+package com.loiko.alex.common;
 
 import java.io.Serializable;
 

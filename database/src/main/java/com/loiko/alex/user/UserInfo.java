@@ -1,6 +1,6 @@
 package com.loiko.alex.user;
 
-import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.common.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

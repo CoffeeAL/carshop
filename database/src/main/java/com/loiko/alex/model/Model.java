@@ -1,6 +1,6 @@
 package com.loiko.alex.model;
 
-import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.common.BaseEntity;
 import com.loiko.alex.carbody.CarBody;
 import com.loiko.alex.engine.EngineType;
 import com.loiko.alex.sparepart.SparePart;

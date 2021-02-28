@@ -1,6 +1,6 @@
 package com.loiko.alex.order;
 
-import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.common.BaseEntity;
 import com.loiko.alex.user.User;
 import com.loiko.alex.paymentform.PaymentForm;
 import com.loiko.alex.sparepart.SparePart;

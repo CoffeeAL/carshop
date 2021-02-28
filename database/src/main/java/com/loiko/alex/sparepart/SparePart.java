@@ -1,6 +1,6 @@
 package com.loiko.alex.sparepart;
 
-import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.common.BaseEntity;
 import com.loiko.alex.model.Model;
 import com.loiko.alex.order.Order;
 import com.loiko.alex.producer.Producer;

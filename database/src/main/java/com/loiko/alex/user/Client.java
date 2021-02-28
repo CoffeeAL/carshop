@@ -29,9 +29,8 @@ public class Client extends User {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     Set<Order> orders = new HashSet<>();
 
-    public Client(String login, String password, String email, LocalDate lastOrderDate, ClientRole role) {
+    public Client(String login, String password, String email, ClientRole role) {
         super(login, password, email);
-        this.lastOrderDate = lastOrderDate;
         this.role = role;
     }
 }

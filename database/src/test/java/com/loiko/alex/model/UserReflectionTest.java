@@ -1,13 +1,14 @@
 package com.loiko.alex.model;
 
 import com.loiko.alex.user.User;
+import com.loiko.alex.user.UserInfo;
 import org.junit.Test;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.lang.reflect.Field;
 
-public class ClientReflectionTest {
+public class UserReflectionTest {
 
     @Test
     public void checkAnnotation() {
@@ -19,7 +20,7 @@ public class ClientReflectionTest {
 
     @Test
     public void checkColumnAnnotation() throws NoSuchFieldException {
-        Field nameField = User.class.getDeclaredField("name");
+        Field nameField = UserInfo.class.getDeclaredField("fullName");
         Column annotation = nameField.getAnnotation(Column.class);
         if (annotation == null) {
             System.out.println(nameField.getName());

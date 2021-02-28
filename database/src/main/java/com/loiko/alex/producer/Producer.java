@@ -1,6 +1,6 @@
 package com.loiko.alex.producer;
 
-import com.loiko.alex.baseentity.BaseEntity;
+import com.loiko.alex.common.BaseEntity;
 import com.loiko.alex.country.Country;
 import com.loiko.alex.sparepart.SparePart;
 import lombok.*;
@@ -31,4 +31,9 @@ public class Producer implements BaseEntity<Long> {
 
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL)
     private Set<SparePart> spareParts = new HashSet<>();
+
+    public Producer(String producerName, Country country) {
+        this.producerName = producerName;
+        this.country = country;
+    }
 }
