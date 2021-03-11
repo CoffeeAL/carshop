@@ -43,6 +43,11 @@ CREATE TABLE carshop_storage.client
     UNIQUE (client_id)
 );
 
+CREATE TABLE computer_games_e_shop_storage.simple_user_detail (
+  user_id BIGINT UNIQUE NOT NULL REFERENCES computer_games_e_shop_storage.user_data(id),
+  last_visit_date DATE
+);
+
 CREATE TABLE carshop_storage.producer
 (
     id            BIGSERIAL PRIMARY KEY,
