@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface OrderDao extends BaseDao<Order, Long> {
 
-    List<Order> findByClient(Session session, Long clientId);
+    List<Order> findByClient(Long clientId);
 
-    List<Order> findByDate(Session session, LocalDate date);
+    List<Order> findByDate(LocalDate date);
 
-    List<Order> findByPaymentForm(Session session, PaymentForm form);
+    List<Order> findByPaymentForm(PaymentForm form);
 }

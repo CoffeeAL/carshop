@@ -2,16 +2,21 @@ package com.loiko.alex.order;
 
 import com.loiko.alex.common.BaseDaoImpl;
 import com.loiko.alex.paymentform.PaymentForm;
+import com.querydsl.jpa.impl.JPAQuery;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
 
+    private static final QOrder ORDER = QOrder.order;
+    private final Session SESSION = sessionFactory.getCurrentSession();
     private static final OrderDaoImpl INSTANCE = new OrderDaoImpl();
 
     public static OrderDaoImpl getInstance() {
@@ -24,32 +29,37 @@ public class OrderDaoImpl extends BaseDaoImpl<Order, Long> implements OrderDao {
     }
 
     @Override
-    public List<Order> findByClient(Session session, Long clientId) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Order> criteria = criteriaBuilder.createQuery(Order.class);
-        Root<Order> root = criteria.from(Order.class);
-        criteria.select(root)
-                .where(criteriaBuilder.equal(root.get(Order_.client), clientId));
-        return session.createQuery(criteria).list();
+    public List<Order> findAll() {
+        return new JPAQuery<Order>(SESSION)
+                .select(ORDER)
+                .from(ORDER)
+                .fetch();
     }
 
     @Override
-    public List<Order> findByDate(Session session, LocalDate date) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Order> criteria = criteriaBuilder.createQuery(Order.class);
-        Root<Order> root = criteria.from(Order.class);
-        criteria.select(root)
-                .where(criteriaBuilder.equal(root.get(Order_.date), date));
-        return session.createQuery(criteria).list();
+    public List<Order> findByClient(Long clientId) {
+        return new JPAQuery<Order>(SESSION)
+                .select(ORDER)
+                .from(ORDER)
+                .where(ORDER.client.id.eq(clientId))
+                .fetch();
     }
 
     @Override
-    public List<Order> findByPaymentForm(Session session, PaymentForm form) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<Order> criteria = criteriaBuilder.createQuery(Order.class);
-        Root<Order> root = criteria.from(Order.class);
-        criteria.select(root)
-                .where(criteriaBuilder.equal(root.get(Order_.paymentForm), form));
-        return session.createQuery(criteria).list();
+    public List<Order> findByDate(LocalDate date) {
+        return new JPAQuery<Order>(SESSION)
+                .select(ORDER)
+                .from(ORDER)
+                .where(ORDER.date.eq(date))
+                .fetch();
+    }
+
+    @Override
+    public List<Order> findByPaymentForm(PaymentForm form) {
+        return new JPAQuery<Order>(SESSION)
+                .select(ORDER)
+                .from(ORDER)
+                .where(ORDER.paymentForm.eq(form))
+                .fetch();
     }
 }

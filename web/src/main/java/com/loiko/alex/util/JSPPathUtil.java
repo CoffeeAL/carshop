@@ -2,13 +2,15 @@ package com.loiko.alex.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class JSPPathUtil {
+@UtilityClass
+public class JSPPathUtil {
 
     private static final String FORMAT = "/WEB-INF/jsp/%s.jsp";
 
-    public static String get(String jspName) {
+    public static String getPath(String jspName) {
         return String.format(FORMAT, jspName);
     }
 }

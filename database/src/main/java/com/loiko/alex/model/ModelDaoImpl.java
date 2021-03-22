@@ -1,21 +1,23 @@
 package com.loiko.alex.model;
 
 import com.loiko.alex.common.BaseDaoImpl;
+import com.loiko.alex.sparepart.QSparePart;
 import com.loiko.alex.sparepart.SparePart;
-import com.loiko.alex.sparepart.SparePart_;
+import com.querydsl.jpa.impl.JPAQuery;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModelDaoImpl extends BaseDaoImpl<Model, Long> implements ModelDao {
 
+    private static final QModel MODEL = QModel.model;
+    private final Session SESSION = sessionFactory.getCurrentSession();
     private static final ModelDaoImpl INSTANCE = new ModelDaoImpl();
 
     public static ModelDaoImpl getInstance() {
@@ -28,13 +30,30 @@ public class ModelDaoImpl extends BaseDaoImpl<Model, Long> implements ModelDao {
     }
 
     @Override
-    public List<SparePart> getSparePartList(Session session, Model model) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<SparePart> criteria = criteriaBuilder.createQuery(SparePart.class);
-        Root<SparePart> root = criteria.from(SparePart.class);
-        criteria.select(root)
-                .where(criteriaBuilder.equal(root.get(SparePart_.models), model)
-        );
-        return session.createQuery(criteria).list();
+    public List<Model> findAll() {
+        return new JPAQuery<Model>(SESSION)
+                .select(MODEL)
+                .from(MODEL)
+                .fetch();
+    }
+
+    @Override
+    public List<SparePart> getSparePartList(Model model) {
+        return new JPAQuery<SparePart>(SESSION)
+                .select(QSparePart.sparePart)
+                .from(QSparePart.sparePart)
+                .where(QSparePart.sparePart.models.contains(model))
+                .fetch();
+    }
+
+    @Override
+    public Optional<Model> findById(Long id) {
+        return new JPAQuery<Model>(SESSION)
+                .select(MODEL)
+                .from(MODEL)
+                .where(MODEL.id.eq(id))
+                .fetch()
+                .stream()
+                .findAny();
     }
 }

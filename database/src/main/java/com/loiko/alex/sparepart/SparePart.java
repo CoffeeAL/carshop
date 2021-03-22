@@ -36,6 +36,7 @@ public class SparePart implements BaseEntity<Long> {
     @Column(name = "description")
     private String description;
 
+    //TODO transform to BigDecimal
     @Column(name = "price")
     private Double price;
 
@@ -47,4 +48,12 @@ public class SparePart implements BaseEntity<Long> {
             joinColumns = @JoinColumn(name = "spare_part_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
     private Set<Order> orders = new HashSet<>();
+
+    public SparePart(String sparePartName, String vendorCode, Producer producer, String description, Double price) {
+        this.sparePartName = sparePartName;
+        this.vendorCode = vendorCode;
+        this.producer = producer;
+        this.description = description;
+        this.price = price;
+    }
 }

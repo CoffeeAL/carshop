@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public interface BaseDao<T extends BaseEntity<U>, U extends Serializable> {
 
-    U save(Session session, T model);
+    U save(T model);
 
-    List<T> findAll(Session session);
+    List<T> findAll();
 
-    Optional<T> findById(Session session, U id);
+    Optional<T> findById(U id);
 
-    void update(Session session, T model);
+    void update(T model);
 
-    void delete(Session session, T model);
+    void delete(T model);
 }

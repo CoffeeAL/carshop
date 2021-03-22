@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ModelDao extends BaseDao<Model, Long> {
 
-    List<SparePart> getSparePartList(Session session, Model model);
+    List<SparePart> getSparePartList(Model model);
 }

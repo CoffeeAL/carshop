@@ -28,11 +28,22 @@ public class ClientDaoTest {
     @Test
     public void checkSaveClient() {
         @Cleanup Session session = FACTORY.openSession();
-        User client = new Client("Login", "password", "test@gmail.com",
+        Client client = new Client("Login", "password", "test@gmail.com",
                 ClientRole.ORDINARY_CLIENT);
         assertNotNull(client);
         Serializable id = session.save(client);
         assertNotNull(id);
+    }
+
+    @Test
+    public void checkUpdateClientRole() {
+        @Cleanup Session session = FACTORY.openSession();
+        Client client = Client.builder().role(ClientRole.ORDINARY_CLIENT).build();
+        session.save(client);
+        assertTrue(client.getRole() == ClientRole.ORDINARY_CLIENT);
+        client.setRole(ClientRole.VIP_CLIENT);
+        assertTrue(client.getRole() == ClientRole.VIP_CLIENT);
+
     }
 
     @Test

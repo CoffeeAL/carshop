@@ -16,10 +16,8 @@ public class ClientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User defaultClient = ClientService.getInstance().getDefaultClient();
-        req.setAttribute("client", defaultClient);
         getServletContext()
-                .getRequestDispatcher(JSPPathUtil.get("client"))
+                .getRequestDispatcher(JSPPathUtil.getPath("client"))
                 .forward(req, resp);
     }
 }

@@ -1,6 +1,10 @@
 package com.loiko.alex.common;
 
+import com.querydsl.jpa.impl.JPAQuery;
+import lombok.Getter;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,34 +15,38 @@ import java.util.Optional;
 
 public abstract class BaseDaoImpl<T extends BaseEntity<U>, U extends Serializable> implements BaseDao<T, U> {
 
+    @Autowired
+    protected SessionFactory sessionFactory;
+
     public abstract Class<T> getEntityClass();
 
     @Override
-    public U save(Session session, T model) {
-        return (U) session.save(model);
+    public U save(T model) {
+        return (U) sessionFactory.getCurrentSession().save(model);
     }
 
     @Override
-    public List<T> findAll(Session session) {
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+    public List<T> findAll() {
+        //TODO сделать не через критерию
+        CriteriaBuilder criteriaBuilder = sessionFactory.getCurrentSession().getCriteriaBuilder();
         CriteriaQuery<T> criteria = criteriaBuilder.createQuery(getEntityClass());
         Root<T> root = criteria.from(getEntityClass());
         criteria.select(root);
-        return session.createQuery(criteria).list();
+        return sessionFactory.getCurrentSession().createQuery(criteria).list();
     }
 
     @Override
-    public Optional<T> findById(Session session, U id) {
-        return Optional.of(session.find(getEntityClass(), id));
+    public Optional<T> findById(U id) {
+        return Optional.of(sessionFactory.getCurrentSession().find(getEntityClass(), id));
     }
 
     @Override
-    public void update(Session session, T model) {
-        session.update(model);
+    public void update(T model) {
+        sessionFactory.getCurrentSession().update(model);
     }
 
     @Override
-    public void delete(Session session, T model) {
-        session.delete(model);
+    public void delete(T model) {
+        sessionFactory.getCurrentSession().delete(model);
     }
 }
