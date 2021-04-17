@@ -11,84 +11,84 @@ DROP TABLE IF EXISTS carshop_storage.user CASCADE;
 
 CREATE TABLE carshop_storage.user
 (
-    id       BIGSERIAL PRIMARY KEY,
-    login    CHARACTER VARYING(20) UNIQUE NOT NULL,
-    password CHARACTER VARYING(20),
-    email    CHARACTER VARYING(30)
+    user_id       BIGSERIAL PRIMARY KEY,
+    login    VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) UNIQUE NOT NULL,
+    email    VARCHAR(30) UNIQUE NOT NULL
 );
 
 CREATE TABLE carshop_storage.user_info
 (
-    user_id      BIGINT REFERENCES carshop_storage.user (id),
-    name         CHARACTER VARYING(30) NOT NULL,
-    surname      CHARACTER VARYING(30) NOT NULL,
+    user_id           BIGINT REFERENCES carshop_storage.user (user_id),
+    name         VARCHAR(30) NOT NULL,
+    surname      VARCHAR(30) NOT NULL,
     age          INTEGER,
-    phone_number CHARACTER VARYING(15),
-    hobby        CHARACTER VARYING(200),
-    birth_date   DATE
+    phone_number VARCHAR(15),
+    hobby        VARCHAR(200),
+    birth_date   DATE,
+    UNIQUE(user_id)
 );
 
 CREATE TABLE carshop_storage.admin
 (
-    user_id BIGINT REFERENCES carshop_storage.user (id),
+    admin_id BIGINT UNIQUE NOT NULL REFERENCES carshop_storage.user (user_id),
     salary  DECIMAL,
-    role    CHARACTER VARYING NOT NULL
+    role    VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE carshop_storage.client
 (
-    client_id       BIGINT REFERENCES carshop_storage.user (id),
+    client_id         BIGINT UNIQUE NOT NULL REFERENCES carshop_storage.user (user_id),
     last_order_date DATE,
-    role            CHARACTER VARYING(20) NOT NULL,
-    UNIQUE (client_id)
+    role            VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE carshop_storage.producer
 (
-    id            BIGSERIAL PRIMARY KEY,
-    producer_name CHARACTER VARYING(30) NOT NULL,
-    country_name  CHARACTER VARYING(20)
+    producer_id            BIGSERIAL PRIMARY KEY,
+    producer_name VARCHAR(30) NOT NULL,
+    country_name  VARCHAR(20)
 );
 
 CREATE TABLE carshop_storage.car
 (
-    id            BIGSERIAL PRIMARY KEY,
-    brand         CHARACTER VARYING(20),
-    model         CHARACTER VARYING(20),
-    car_body_type CHARACTER VARYING(10),
-    engine_type   CHARACTER VARYING(10)
+    car_id            BIGSERIAL PRIMARY KEY,
+    brand         VARCHAR(20) NOT NULL,
+    model         VARCHAR(20) NOT NULL,
+    car_body_type VARCHAR(10),
+    engine_type   VARCHAR(10)
 );
 
 CREATE TABLE carshop_storage.spare_part
 (
-    id              BIGSERIAL PRIMARY KEY,
-    spare_part_name CHARACTER VARYING(30) NOT NULL,
-    vendor_code     CHARACTER VARYING(30),
-    producer_id     BIGINT REFERENCES carshop_storage.producer (id),
-    car_id          BIGINT REFERENCES carshop_storage.car (id),
-    description     CHARACTER VARYING(100),
+    spare_part_id              BIGSERIAL PRIMARY KEY,
+    spare_part_name VARCHAR(30) NOT NULL,
+    vendor_code     VARCHAR(30),
+    producer_id     BIGINT REFERENCES carshop_storage.producer (producer_id),
+    car_id          BIGINT REFERENCES carshop_storage.car (car_id),
+    description     VARCHAR(100),
     price           NUMERIC(6, 2)
 );
 
 CREATE TABLE carshop_storage.spare_part_car
 (
-    spare_part_id BIGINT NOT NULL REFERENCES carshop_storage.spare_part (id),
-    car_id        BIGINT NOT NULL REFERENCES carshop_storage.car (id),
+    spare_part_id BIGINT NOT NULL REFERENCES carshop_storage.spare_part (spare_part_id),
+    car_id        BIGINT NOT NULL REFERENCES carshop_storage.car (car_id),
     UNIQUE (spare_part_id, car_id)
 );
 
 CREATE TABLE carshop_storage.order
 (
-    id           BIGSERIAL PRIMARY KEY,
+    order_id           BIGSERIAL PRIMARY KEY,
     client_id    BIGINT REFERENCES carshop_storage.client (client_id),
     date         DATE,
-    payment_form CHARACTER VARYING(20)
+    payment_form VARCHAR(20)
 );
 
 CREATE TABLE carshop_storage.order_spare_part
 (
-    order_id      BIGINT REFERENCES carshop_storage.order (id),
-    spare_part_id BIGINT REFERENCES carshop_storage.spare_part (id),
+    order_id      BIGINT REFERENCES carshop_storage.order (order_id),
+    spare_part_id BIGINT REFERENCES carshop_storage.spare_part (spare_part_id),
     UNIQUE (order_id, spare_part_id)
 );
 
@@ -100,7 +100,7 @@ VALUES ('Kimi_Raikkonen', 'Iceman', 'kimi@gmail.com'),
        ('Niki_Lauda', 'Rat', 'rat@gmail.com'),
        ('James_Hunt', 'Hunt_the_shunt', 'jamesy@gmail.com'),
        ('Fanhio', 'Maestro', 'maestro@gmail.com'),
-       ('Mansell', 'Lion', 'finger@gmail.com'),
+       ('Mansell', 'Lion', 'notfinger@gmail.com'),
        ('Niko_Rosberg', 'Brithney', 'niko@gmail.com'),
        ('Jack_Brabham', 'Black_Jack', 'jackie@gmail.com');
 
@@ -116,7 +116,7 @@ VALUES (1, 'Kimi', 'Raikkonen', 40, '2434-324-234', 'races, dogs, reading', '198
        (9, 'Niko', 'Rosberg', 35, '1244-583-367', 'mahjong, golf', '1985-06-12'),
        (10, 'Jack', 'Brabham', 94, '2435-167-754', 'dances', '1926-04-02');
 
-INSERT INTO carshop_storage.admin (user_id, salary, role)
+INSERT INTO carshop_storage.admin (admin_id, salary, role)
 VALUES (7, 5000.0, 'Main admin'),
        (1, 3500.0, 'Admin'),
        (4, 3000.0, 'Admin');

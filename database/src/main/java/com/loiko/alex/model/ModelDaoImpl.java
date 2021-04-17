@@ -4,22 +4,21 @@ import com.loiko.alex.common.BaseDaoImpl;
 import com.loiko.alex.sparepart.QSparePart;
 import com.loiko.alex.sparepart.SparePart;
 import com.querydsl.jpa.impl.JPAQuery;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModelDaoImpl extends BaseDaoImpl<Model, Long> implements ModelDao {
 
-    private static final QModel MODEL = QModel.model;
+    private final QModel MODEL = QModel.model;
     private final Session SESSION = sessionFactory.getCurrentSession();
     private static final ModelDaoImpl INSTANCE = new ModelDaoImpl();
 
+    @Autowired
     public static ModelDaoImpl getInstance() {
         return INSTANCE;
     }

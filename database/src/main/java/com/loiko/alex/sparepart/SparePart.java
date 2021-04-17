@@ -1,6 +1,6 @@
 package com.loiko.alex.sparepart;
 
-import com.loiko.alex.common.BaseEntity;
+import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.model.Model;
 import com.loiko.alex.order.Order;
 import com.loiko.alex.producer.Producer;
@@ -13,15 +13,11 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @Builder
 @Entity
 @Table(name = "spare_part", schema = "carshop_storage")
-public class SparePart implements BaseEntity<Long> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class SparePart extends BaseEntityImpl<Long> {
 
     @Column(name = "spare_part_name", nullable = false)
     private String sparePartName;

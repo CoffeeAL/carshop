@@ -12,8 +12,8 @@ public class ApplicationSessionFactory {
 
     static {
         Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
-                applySettings(configuration.getProperties());
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties());
         SESSION_FACTORY = configuration.buildSessionFactory(builder.build());
     }
 

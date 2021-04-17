@@ -11,7 +11,7 @@ public class ConnectionUtil {
             .configure()
             .buildSessionFactory();
 
-    public SessionFactory getInstance() {
+    public SessionFactory getSessionFactory() {
         return SESSION_FACTORY;
     }
 }

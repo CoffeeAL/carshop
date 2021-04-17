@@ -1,6 +1,6 @@
 package com.loiko.alex.producer;
 
-import com.loiko.alex.common.BaseEntity;
+import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.country.Country;
 import com.loiko.alex.sparepart.SparePart;
 import lombok.*;
@@ -11,16 +11,12 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(exclude = {"producerName", "country", "spareParts"})
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @Entity
 @Table(name = "producer", schema = "carshop_storage")
-public class Producer implements BaseEntity<Long> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Producer extends BaseEntityImpl<Long> {
 
     @Column(name = "producer_name", nullable = false)
     private String producerName;
@@ -32,6 +28,7 @@ public class Producer implements BaseEntity<Long> {
     @OneToMany(mappedBy = "producer", cascade = CascadeType.ALL)
     private Set<SparePart> spareParts = new HashSet<>();
 
+    @Builder
     public Producer(String producerName, Country country) {
         this.producerName = producerName;
         this.country = country;

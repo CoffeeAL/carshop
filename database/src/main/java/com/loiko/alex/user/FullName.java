@@ -16,8 +16,8 @@ import javax.persistence.Embeddable;
 public class FullName {
 
     @Column(name = "name", nullable = false)
-    private String firstName;
+    private String name;
 
     @Column(name = "surname", nullable = false)
-    private String lastName;
+    private String surname;
 }

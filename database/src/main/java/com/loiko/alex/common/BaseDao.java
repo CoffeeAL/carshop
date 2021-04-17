@@ -1,12 +1,10 @@
 package com.loiko.alex.common;
 
-import org.hibernate.Session;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
-public interface BaseDao<T extends BaseEntity<U>, U extends Serializable> {
+public interface BaseDao<T extends BaseEntityImpl<U>, U extends Serializable> {
 
     U save(T model);
 

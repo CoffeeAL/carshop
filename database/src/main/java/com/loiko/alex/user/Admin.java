@@ -7,18 +7,19 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Builder
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = "salary")
 @Table(name = "admin", schema = "carshop_storage")
-@PrimaryKeyJoinColumn(name = "user_id")
+@PrimaryKeyJoinColumn(name = "admin_id")
 public class Admin extends User {
 
     @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private AdminRole adminRole;
 

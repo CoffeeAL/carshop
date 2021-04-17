@@ -1,6 +1,5 @@
 package com.loiko.alex.user;
 
-import com.loiko.alex.common.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,14 +12,10 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "user_info", schema = "carshop_storage")
-public class UserInfo implements BaseEntity<Long> {
-
-    @Id
-    @Column(name = "user_id")
-    private Long id;
+public class UserInfo {
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
     @Embedded
@@ -36,14 +31,5 @@ public class UserInfo implements BaseEntity<Long> {
     private String hobby;
 
     @Column(name = "birth_date")
-    private LocalDate date;
-
-    public UserInfo(User user, FullName fullName, Integer age, String phoneNumber, String hobby, LocalDate date) {
-        this.user = user;
-        this.fullName = fullName;
-        this.age = age;
-        this.phoneNumber = phoneNumber;
-        this.hobby = hobby;
-        this.date = date;
-    }
+    private LocalDate birthDate;
 }

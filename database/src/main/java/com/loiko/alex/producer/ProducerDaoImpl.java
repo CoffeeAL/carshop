@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProducerDaoImpl extends BaseDaoImpl<Producer, Long> implements ProducerDao {
 

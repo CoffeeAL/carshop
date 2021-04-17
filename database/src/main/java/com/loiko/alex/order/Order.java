@@ -1,6 +1,6 @@
 package com.loiko.alex.order;
 
-import com.loiko.alex.common.BaseEntity;
+import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.user.User;
 import com.loiko.alex.paymentform.PaymentForm;
 import com.loiko.alex.sparepart.SparePart;
@@ -18,11 +18,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "order", schema = "carshop_storage")
-public class Order implements BaseEntity<Long> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Order extends BaseEntityImpl<Long> {
 
     @ManyToOne
     @JoinColumn(name = "client_id")

@@ -1,7 +1,7 @@
 package com.loiko.alex.model;
 
-import com.loiko.alex.common.BaseEntity;
 import com.loiko.alex.carbody.CarBody;
+import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.engine.EngineType;
 import com.loiko.alex.sparepart.SparePart;
 import lombok.*;
@@ -12,16 +12,12 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "car", schema = "carshop_storage")
-public class Model implements BaseEntity<Long> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Model extends BaseEntityImpl<Long> {
 
     @Embedded
     private CarModel carModel;

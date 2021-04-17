@@ -1,7 +1,5 @@
 package com.loiko.alex.servlet;
 
-import com.loiko.alex.user.User;
-import com.loiko.alex.service.ClientService;
 import com.loiko.alex.util.JSPPathUtil;
 
 import javax.servlet.ServletException;
@@ -16,8 +14,6 @@ public class ClientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext()
-                .getRequestDispatcher(JSPPathUtil.getPath("client"))
-                .forward(req, resp);
+        getServletContext().getRequestDispatcher(JSPPathUtil.getPath("client")).forward(req, resp);
     }
 }
