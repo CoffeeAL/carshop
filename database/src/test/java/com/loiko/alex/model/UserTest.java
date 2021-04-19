@@ -12,6 +12,7 @@ import lombok.Cleanup;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,6 +63,6 @@ public class UserTest {
     @Test
     public void checkFindById() {
         Optional<User> userWithId = userRepository.findById(1L);
-        assertTrue(userWithId.isPresent());
+        Assert.assertNotNull(userWithId.isPresent());
     }
 }

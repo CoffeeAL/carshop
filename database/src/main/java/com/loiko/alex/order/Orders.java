@@ -18,7 +18,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "order", schema = "carshop_storage")
-public class Order extends BaseEntityImpl<Long> {
+public class Orders extends BaseEntityImpl<Long> {
 
     @ManyToOne
     @JoinColumn(name = "user_id")

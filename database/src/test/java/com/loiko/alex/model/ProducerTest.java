@@ -51,8 +51,8 @@ public class ProducerTest {
 
     @Test
     public void checkFindByProducerName() {
-        Producer toyota = producerRepository.findByProducerName("Toyota");
-        Assert.assertNotNull(toyota);
+        Optional<Producer> toyota = producerRepository.findByProducerName("Toyota");
+        Assert.assertNotNull(toyota.isPresent());
     }
 
     @Test
@@ -93,4 +93,16 @@ public class ProducerTest {
         manager.refresh(producer);
         assertTrue(producer.getSpareParts().size() == 1);
     }
+
+    @Test
+    public void checkNativeQuery() {
+        Optional<Producer> amcProducer = producerRepository.findByProducerNameNative("AMC");
+        Assert.assertNotNull(amcProducer.isPresent());
+    }
+
+//    @Test
+//    public void checkJavaQuery() {
+//        Optional<Producer> amcProducer = producerRepository.customMethod("AMC", "DGVX213");
+//        Assert.assertNotNull(amcProducer.isPresent());
+//    }
 }

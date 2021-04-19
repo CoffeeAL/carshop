@@ -2,7 +2,7 @@ package com.loiko.alex.sparepart;
 
 import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.model.Model;
-import com.loiko.alex.order.Order;
+import com.loiko.alex.order.Orders;
 import com.loiko.alex.producer.Producer;
 import lombok.*;
 
@@ -49,7 +49,7 @@ public class SparePart extends BaseEntityImpl<Long> {
     @JoinTable(name = "order_spare_part",
             joinColumns = @JoinColumn(name = "spare_part_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private Set<Order> orders = new HashSet<>();
+    private Set<Orders> orders = new HashSet<>();
 
     public SparePart(String sparePartName, String vendorCode, Producer producer, String description, Double price) {
         this.sparePartName = sparePartName;

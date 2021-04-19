@@ -1,7 +1,7 @@
 package com.loiko.alex.user;
 
 import com.loiko.alex.common.BaseEntityImpl;
-import com.loiko.alex.order.Order;
+import com.loiko.alex.order.Orders;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,7 +36,7 @@ public class User extends BaseEntityImpl<Long> {
     private UserInfo userInfo;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<Order> orders = new HashSet<>();
+    private Set<Orders> orders = new HashSet<>();
 
     public User(String login, String password, String email) {
         this.login = login;

@@ -6,11 +6,11 @@ import com.loiko.alex.paymentform.PaymentForm;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface OrderDao extends BaseDao<Order, Long> {
+public interface OrderDao extends BaseDao<Orders, Long> {
 
-    List<Order> findByClient(Long clientId);
+    List<Orders> findByClient(Long clientId);
 
-    List<Order> findByDate(LocalDate date);
+    List<Orders> findByDate(LocalDate date);
 
-    List<Order> findByPaymentForm(PaymentForm form);
+    List<Orders> findByPaymentForm(PaymentForm form);
 }

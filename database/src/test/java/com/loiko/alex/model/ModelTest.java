@@ -5,6 +5,7 @@ import com.loiko.alex.carbody.CarBody;
 import com.loiko.alex.engine.EngineType;
 import com.loiko.alex.repository.ModelRepository;
 import com.loiko.alex.util.Helper;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +54,7 @@ public class ModelTest {
     @Test
     public void checkFindById() {
         Optional<Model> modelWithId = modelRepository.findById(1L);
-        assertTrue(modelWithId.isPresent());
+        Assert.assertNotNull(modelWithId.isPresent());
     }
 
     @Test
