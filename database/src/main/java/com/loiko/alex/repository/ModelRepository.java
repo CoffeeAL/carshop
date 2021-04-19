@@ -8,9 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface ModelRepository extends CrudRepository<Model, Long>, BaseRepository<Model, Long> {
+public interface ModelRepository extends CrudRepository<Model, Long> {
 
-    List<Model> findByCarBodyType(CarBody carBody);
+    List<Model> findByCarBody(CarBody carBody);
 
     List<Model> findByEngineType(EngineType engineType);
 }

@@ -19,6 +19,7 @@ CREATE TABLE carshop_storage.user
 
 CREATE TABLE carshop_storage.user_info
 (
+user_info_id BIGSERIAL PRIMARY KEY,
     user_id           BIGINT REFERENCES carshop_storage.user (user_id),
     name         VARCHAR(30) NOT NULL,
     surname      VARCHAR(30) NOT NULL,

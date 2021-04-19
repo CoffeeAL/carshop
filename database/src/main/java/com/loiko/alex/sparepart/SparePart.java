@@ -36,7 +36,13 @@ public class SparePart extends BaseEntityImpl<Long> {
     @Column(name = "price")
     private Double price;
 
-    @ManyToMany(mappedBy = "spareParts")
+//    @ManyToMany(mappedBy = "spareParts")
+//    private Set<Model> models = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "spare_part_car", schema = "carshop_storage",
+            joinColumns = @JoinColumn(name = "spare_part_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_id"))
     private Set<Model> models = new HashSet<>();
 
     @ManyToMany

@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "client", schema = "carshop_storage")
@@ -24,6 +23,7 @@ public class Client extends User {
     @Enumerated(EnumType.STRING)
     private ClientRole role;
 
+    @Builder
     public Client(String login, String password, String email, ClientRole role) {
         super(login, password, email);
         this.role = role;

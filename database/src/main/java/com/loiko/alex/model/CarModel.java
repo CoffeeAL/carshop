@@ -8,14 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor(staticName = "of")
 @Embeddable
 public class CarModel {
 
@@ -25,9 +23,4 @@ public class CarModel {
 
     @Column(name = "model", nullable = false)
     private String model;
-
-    public CarModel(Brand brand, String model) {
-        this.brand = brand;
-        this.model = model;
-    }
 }

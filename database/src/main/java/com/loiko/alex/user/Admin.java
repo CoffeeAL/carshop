@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Builder
 @ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +22,7 @@ public class Admin extends User {
     @Enumerated(EnumType.STRING)
     private AdminRole adminRole;
 
+    @Builder
     public Admin(String login, String password, String email, Double salary, AdminRole adminRole) {
         super(login, password, email);
         this.salary = salary;

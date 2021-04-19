@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface SparePartRepository extends CrudRepository<SparePart, Long>, BaseRepository<SparePart, Long> {
+public interface SparePartRepository extends CrudRepository<SparePart, Long> {
 
     Optional<SparePart> findByVendorCode(String vendorCode);
 

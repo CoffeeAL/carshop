@@ -21,7 +21,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user", schema = "carshop_storage")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User extends BaseEntityImpl<Long> {
+public class User extends BaseEntityImpl<Long> {
 
     @Column(name = "login", unique = true, nullable = false)
     private String login;
@@ -35,7 +35,7 @@ public abstract class User extends BaseEntityImpl<Long> {
     @OneToOne(mappedBy = "user")
     private UserInfo userInfo;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Order> orders = new HashSet<>();
 
     public User(String login, String password, String email) {

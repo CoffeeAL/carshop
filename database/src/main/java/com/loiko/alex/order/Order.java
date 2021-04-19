@@ -21,7 +21,7 @@ import java.util.Set;
 public class Order extends BaseEntityImpl<Long> {
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "user_id")
     private User client;
 
     @Column(name = "payment_form")
@@ -31,6 +31,12 @@ public class Order extends BaseEntityImpl<Long> {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToMany(mappedBy = "orders")
+//    @ManyToMany(mappedBy = "orders")
+//    private Set<SparePart> spareParts = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "order_spare_part", schema = "carshop_storage",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "spare_part_id"))
     private Set<SparePart> spareParts = new HashSet<>();
 }

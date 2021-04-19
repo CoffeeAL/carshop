@@ -1,22 +1,10 @@
 package com.loiko.alex.model;
 
 import com.loiko.alex.TestConfig;
-import com.loiko.alex.brand.Brand;
 import com.loiko.alex.carbody.CarBody;
-import com.loiko.alex.configuration.DatabaseConfiguration;
 import com.loiko.alex.engine.EngineType;
-import com.loiko.alex.repository.CarModelRepository;
 import com.loiko.alex.repository.ModelRepository;
-import com.loiko.alex.repository.ProducerRepository;
-import com.loiko.alex.repository.SparePartRepository;
 import com.loiko.alex.util.Helper;
-import lombok.Cleanup;
-import org.checkerframework.checker.units.qual.A;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +58,7 @@ public class ModelTest {
 
     @Test
     public void checkFindByBodyType() {
-        List<Model> hatch = modelRepository.findByCarBodyType(CarBody.HATCHBACK);
+        List<Model> hatch = modelRepository.findByCarBody(CarBody.HATCHBACK);
         assertTrue(hatch.size() == 1);
     }
 

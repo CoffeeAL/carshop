@@ -1,5 +1,6 @@
 package com.loiko.alex.user;
 
+import com.loiko.alex.common.BaseEntityImpl;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "user_info", schema = "carshop_storage")
-public class UserInfo {
+public class UserInfo extends BaseEntityImpl<Long> {
 
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)

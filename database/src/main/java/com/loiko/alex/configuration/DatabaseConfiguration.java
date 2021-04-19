@@ -24,8 +24,8 @@ public class DatabaseConfiguration {
     @Bean
     public DataSource dataSource(@Value("${db.user}") String username,
                                  @Value("${db.password}") String password,
-                                 @Value("${db.url}") String url,
-                                 @Value("${db.driver}") String driver) {
+                                 @Value("${db.url-test}") String url,
+                                 @Value("${db.driver-test}") String driver) {
         DriverManagerDataSource manager = new DriverManagerDataSource();
         manager.setUsername(username);
         manager.setPassword(password);
@@ -35,28 +35,28 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties hibernateProperties) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean managerFactory = new LocalContainerEntityManagerFactoryBean();
         managerFactory.setJpaVendorAdapter(vendorAdapter);
         managerFactory.setPackagesToScan("com.loiko.alex");
         managerFactory.setDataSource(dataSource);
-        managerFactory.setJpaProperties(hibernateProperties);
+        managerFactory.setJpaProperties(jpaProperties);
         return managerFactory;
     }
 
     @Bean
-    public Properties hibernateProperties(@Value("classpath:hibernate.properties") Resource resource) throws IOException {
+    public Properties jpaProperties(@Value("classpath:hibernate.properties") Resource hibernateProperties) throws IOException {
         Properties properties = new Properties();
-        properties.load(resource.getInputStream());
+        properties.load(hibernateProperties.getInputStream());
         return properties;
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory managerFactory) {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory(managerFactory);
-        return jpaTransactionManager;
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 }
