@@ -14,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,9 +27,6 @@ public class ModelTest {
 
     @Autowired
     private Helper helper;
-
-    @Autowired
-    private EntityManager manager;
 
     @Autowired
     private ModelRepository modelRepository;

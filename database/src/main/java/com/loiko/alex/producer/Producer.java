@@ -12,6 +12,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"producerName", "country", "spareParts"})
 @Builder
+@ToString(exclude = "spareParts")
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 @Entity

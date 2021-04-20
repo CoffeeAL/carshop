@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 @Builder
+@ToString(exclude = {"models", "orders"})
 @Entity
 @Table(name = "spare_part", schema = "carshop_storage")
 public class SparePart extends BaseEntityImpl<Long> {

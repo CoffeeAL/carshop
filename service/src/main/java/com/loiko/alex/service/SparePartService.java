@@ -15,26 +15,26 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class SparePartService {
 
-    @Autowired
-    private SparePartService sparePartService;
-
-    private final SparePartDao sparePartDao;
-
-    @Autowired
-    public SparePartService(SparePartDao sparePartDao) {
-        this.sparePartDao = sparePartDao;
-    }
-
-    @Transactional
-    public Long save(SparePart sparePart) {
-        return sparePartDao.save(sparePart);
-    }
-
-    public List<SparePart> findAll() {
-        return sparePartDao.findAll();
-    }
-
-    public List<SparePart> filterSpareParts(SparePartFilterDto filters, LimitOffSetDto limitOffSet) {
-        return sparePartDao.filterAllSpareParts(filters, limitOffSet);
-    }
+//    @Autowired
+//    private SparePartService sparePartService;
+//
+//    private final SparePartDao sparePartDao;
+//
+//    @Autowired
+//    public SparePartService(SparePartDao sparePartDao) {
+//        this.sparePartDao = sparePartDao;
+//    }
+//
+//    @Transactional
+//    public Long save(SparePart sparePart) {
+//        return sparePartDao.save(sparePart);
+//    }
+//
+//    public List<SparePart> findAll() {
+//        return sparePartDao.findAll();
+//    }
+//
+//    public List<SparePart> filterSpareParts(SparePartFilterDto filters, LimitOffSetDto limitOffSet) {
+//        return sparePartDao.filterAllSpareParts(filters, limitOffSet);
+//    }
 }

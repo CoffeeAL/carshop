@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "client", schema = "carshop_storage")

@@ -6,7 +6,6 @@ import com.loiko.alex.model.Model;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ModelRepository extends CrudRepository<Model, Long> {
 

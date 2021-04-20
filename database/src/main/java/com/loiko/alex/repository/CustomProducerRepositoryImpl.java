@@ -2,7 +2,6 @@ package com.loiko.alex.repository;
 
 import com.loiko.alex.producer.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;

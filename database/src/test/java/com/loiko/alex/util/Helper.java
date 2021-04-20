@@ -35,6 +35,7 @@ public class Helper {
     public void cleanDataBase() {
         EntityManager entityManager = managerFactory.createEntityManager();
         entityManager.getTransaction().begin();
+        //TODO fix orders
 //        entityManager.createQuery("delete from Orders").executeUpdate();
         entityManager.createQuery("delete from SparePart").executeUpdate();
         entityManager.createQuery("delete from Model").executeUpdate();
@@ -88,9 +89,9 @@ public class Helper {
         entityManager.persist(wheel);
         entityManager.persist(light);
 
-//        Orders firstOrder = Orders.builder().client(kimi).date(LocalDate.of(2021, 04, 15)).paymentForm(PaymentForm.CASH).build();
-//        Orders secondOrder = Orders.builder().client(michael).date(LocalDate.of(2021, 03, 27)).paymentForm(PaymentForm.CARD).build();
-//        Orders thirdOrder = Orders.builder().client(niki).date(LocalDate.of(2021, 02, 20)).paymentForm(PaymentForm.ONLINE).build();
+        Orders firstOrder = Orders.builder().client(kimi).date(LocalDate.of(2021, 04, 15)).paymentForm(PaymentForm.CASH).build();
+        Orders secondOrder = Orders.builder().client(michael).date(LocalDate.of(2021, 03, 27)).paymentForm(PaymentForm.CARD).build();
+        Orders thirdOrder = Orders.builder().client(niki).date(LocalDate.of(2021, 02, 20)).paymentForm(PaymentForm.ONLINE).build();
 //        entityManager.persist(firstOrder);
 //        entityManager.persist(secondOrder);
 //        entityManager.persist(thirdOrder);

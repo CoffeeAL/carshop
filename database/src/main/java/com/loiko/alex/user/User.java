@@ -19,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(exclude = "orders")
 @Table(name = "user", schema = "carshop_storage")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntityImpl<Long> {

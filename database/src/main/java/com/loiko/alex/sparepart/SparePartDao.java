@@ -1,7 +1,6 @@
 package com.loiko.alex.sparepart;
 
 import com.loiko.alex.common.BaseDao;
-import org.hibernate.Session;
 
 import java.util.List;
 
