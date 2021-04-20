@@ -1,12 +1,11 @@
-package com.loiko.alex.service.configaration;
+package com.loiko.alex.configuration;
 
-import com.loiko.alex.configuration.DatabaseConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan("com.loiko.alex")
+@ComponentScan("com.loiko.alex.service")
 @Import(DatabaseConfiguration.class)
 public class ServiceConfiguration {
 }

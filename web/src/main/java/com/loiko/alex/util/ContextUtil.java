@@ -1,6 +1,6 @@
 package com.loiko.alex.util;
 
-import com.loiko.alex.service.configaration.ServiceConfiguration;
+import com.loiko.alex.configuration.ServiceConfiguration;
 import lombok.experimental.UtilityClass;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
