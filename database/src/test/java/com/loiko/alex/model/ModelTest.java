@@ -5,7 +5,6 @@ import com.loiko.alex.carbody.CarBody;
 import com.loiko.alex.engine.EngineType;
 import com.loiko.alex.repository.ModelRepository;
 import com.loiko.alex.util.Helper;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
@@ -50,7 +49,7 @@ public class ModelTest {
     @Test
     public void checkFindById() {
         Optional<Model> modelWithId = modelRepository.findById(1L);
-        Assert.assertNotNull(modelWithId.isPresent());
+        assertNotNull(modelWithId.isPresent());
     }
 
     @Test

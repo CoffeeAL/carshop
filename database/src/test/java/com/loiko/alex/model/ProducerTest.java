@@ -7,7 +7,6 @@ import com.loiko.alex.repository.ProducerRepository;
 import com.loiko.alex.repository.SparePartRepository;
 import com.loiko.alex.sparepart.SparePart;
 import com.loiko.alex.util.Helper;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,9 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -45,6 +46,11 @@ public class ProducerTest {
     }
 
     @Test
+    public void checkContext() {
+        assertNotNull(producerRepository);
+    }
+
+    @Test
     public void checkFindAllProducers() {
         producerRepository.findAll().forEach(System.out::println);
     }
@@ -52,12 +58,25 @@ public class ProducerTest {
     @Test
     public void checkFindByProducerName() {
         Optional<Producer> toyota = producerRepository.findByProducerName("Toyota");
-        Assert.assertNotNull(toyota.isPresent());
+        assertNotNull(toyota.isPresent());
     }
 
     @Test
-    public void checkContext() {
-        assertNotNull(producerRepository);
+    public void checkFindByProducerNameNativeQuery() {
+        Optional<Producer> amcProducer = producerRepository.findByProducerNameNative("AMC");
+        assertNotNull(amcProducer.isPresent());
+    }
+
+    @Test
+    public void checkFindByCountry() {
+        List<Producer> producers = producerRepository.findByCountry(Country.JAPAN);
+        assertTrue(producers.size() == 1);
+    }
+
+    @Test
+    public void checkFindByProducerNameAndCountry() {
+        Optional<Producer> producer = producerRepository.findByProducerNameAndCountry("Ramsey", Country.FRANCE);
+        assertTrue(producer.isPresent());
     }
 
     @Test
@@ -92,12 +111,6 @@ public class ProducerTest {
 
         manager.refresh(producer);
         assertTrue(producer.getSpareParts().size() == 1);
-    }
-
-    @Test
-    public void checkNativeQuery() {
-        Optional<Producer> amcProducer = producerRepository.findByProducerNameNative("AMC");
-        Assert.assertNotNull(amcProducer.isPresent());
     }
 
 //    @Test

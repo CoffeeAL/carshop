@@ -15,6 +15,12 @@ public class SparePartsFilterRepositoryImpl implements SparePartsFilterRepositor
 
     @Override
     public List<SparePart> filterAllSpareParts(SparePartFilterDto filters, LimitOffSetDto limitOffset) {
-        return null;
+        String query = "select sp " +
+                "from SparePart sp " +
+                "where sp.sparePartName = filters.getSparePartName() and sp.country = filters.getCountry() and sp.price = filters.getPrice()";
+        return entityManager.createQuery(query, SparePart.class)
+                .setMaxResults(limitOffset.getLimit())
+                .setFirstResult(limitOffset.getOffset())
+                .getResultList();
     }
 }

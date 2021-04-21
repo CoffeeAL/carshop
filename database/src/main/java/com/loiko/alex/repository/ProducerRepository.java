@@ -22,7 +22,7 @@ public interface ProducerRepository extends CrudRepository<Producer, Long>, Cust
 
     List<Producer> findByCountry(Country country);
 
-    Optional<Producer> findByProducerNameAndCountry(String name, Country country);
+    Optional<Producer> findByProducerNameAndCountry(String producerName, Country country);
 
 //    @Query("select m " +
 //            "from Movie m " +

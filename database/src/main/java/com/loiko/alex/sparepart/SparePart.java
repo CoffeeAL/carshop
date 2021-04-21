@@ -4,9 +4,20 @@ import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.model.Model;
 import com.loiko.alex.order.Orders;
 import com.loiko.alex.producer.Producer;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,14 +48,14 @@ public class SparePart extends BaseEntityImpl<Long> {
     @Column(name = "price")
     private Double price;
 
-//    @ManyToMany(mappedBy = "spareParts")
-//    private Set<Model> models = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(name = "spare_part_car", schema = "carshop_storage",
-            joinColumns = @JoinColumn(name = "spare_part_id"),
-            inverseJoinColumns = @JoinColumn(name = "car_id"))
+    @ManyToMany(mappedBy = "spareParts")
     private Set<Model> models = new HashSet<>();
+
+//    @ManyToMany
+//    @JoinTable(name = "spare_part_car", schema = "carshop_storage",
+//            joinColumns = @JoinColumn(name = "spare_part_id"),
+//            inverseJoinColumns = @JoinColumn(name = "car_id"))
+//    private Set<Model> models = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "order_spare_part",

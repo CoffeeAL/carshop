@@ -16,7 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
@@ -51,6 +52,6 @@ public class UserTest {
     @Test
     public void checkFindById() {
         Optional<User> userWithId = userRepository.findById(1L);
-        Assert.assertNotNull(userWithId.isPresent());
+        assertNotNull(userWithId.isPresent());
     }
 }

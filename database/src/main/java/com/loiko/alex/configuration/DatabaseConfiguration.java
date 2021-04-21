@@ -1,7 +1,9 @@
 package com.loiko.alex.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -24,8 +26,8 @@ public class DatabaseConfiguration {
     @Bean
     public DataSource dataSource(@Value("${db.user}") String username,
                                  @Value("${db.password}") String password,
-                                 @Value("${db.url-test}") String url,
-                                 @Value("${db.driver-test}") String driver) {
+                                 @Value("${db.url}") String url,
+                                 @Value("${db.driver}") String driver) {
         DriverManagerDataSource manager = new DriverManagerDataSource();
         manager.setUsername(username);
         manager.setPassword(password);

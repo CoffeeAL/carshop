@@ -4,9 +4,23 @@ import com.loiko.alex.carbody.CarBody;
 import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.engine.EngineType;
 import com.loiko.alex.sparepart.SparePart;
-import lombok.*;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
 import java.util.HashSet;
 import java.util.Set;
 
