@@ -28,7 +28,8 @@ import java.util.Set;
         "password",
         "email",
         "userInfo",
-        "orders"
+        "orders",
+        "role"
 })
 @NoArgsConstructor
 @AllArgsConstructor

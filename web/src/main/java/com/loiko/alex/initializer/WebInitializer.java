@@ -1,5 +1,7 @@
 package com.loiko.alex.initializer;
 
+import com.loiko.alex.configuration.DatabaseConfiguration;
+import com.loiko.alex.configuration.SecurityConfiguration;
 import com.loiko.alex.configuration.ServiceConfiguration;
 import com.loiko.alex.configuration.WebConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -10,9 +12,9 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     private static final String SERVLET_MAPPING = "/";
 
-    @Nullable
+    @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{ServiceConfiguration.class};
+        return new Class[]{ServiceConfiguration.class, SecurityConfiguration.class, DatabaseConfiguration.class};
     }
 
     @Nullable

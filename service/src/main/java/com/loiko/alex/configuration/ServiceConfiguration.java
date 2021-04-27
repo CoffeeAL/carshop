@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ComponentScan("com.loiko.alex.service")
+@ComponentScan(basePackages = {"com.loiko.alex.service", "com.loiko.alex.converter"})
 @Import(DatabaseConfiguration.class)
 public class ServiceConfiguration {
 }

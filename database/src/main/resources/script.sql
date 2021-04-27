@@ -11,49 +11,49 @@ DROP TABLE IF EXISTS carshop_storage.user CASCADE;
 
 CREATE TABLE carshop_storage.user
 (
-    user_id       BIGSERIAL PRIMARY KEY,
+    user_id  BIGSERIAL PRIMARY KEY,
     login    VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(50) UNIQUE NOT NULL,
-    email    VARCHAR(30) UNIQUE NOT NULL
+    password VARCHAR(50) NOT NULL,
+    email    VARCHAR(30) UNIQUE NOT NULL,
+    role     VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE carshop_storage.user_info
 (
-user_info_id BIGSERIAL PRIMARY KEY,
-    user_id           BIGINT REFERENCES carshop_storage.user (user_id),
+    user_info_id BIGSERIAL PRIMARY KEY,
+    user_id      BIGINT REFERENCES carshop_storage.user (user_id),
     name         VARCHAR(30) NOT NULL,
     surname      VARCHAR(30) NOT NULL,
     age          INTEGER,
     phone_number VARCHAR(15),
     hobby        VARCHAR(200),
     birth_date   DATE,
-    UNIQUE(user_id)
+    UNIQUE (user_id)
 );
 
 CREATE TABLE carshop_storage.admin
 (
     admin_id BIGINT UNIQUE NOT NULL REFERENCES carshop_storage.user (user_id),
-    salary  DECIMAL,
-    role    VARCHAR(30) NOT NULL
+    salary   INTEGER,
+    role     VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE carshop_storage.client
 (
-    client_id         BIGINT UNIQUE NOT NULL REFERENCES carshop_storage.user (user_id),
-    last_order_date DATE,
-    role            VARCHAR(20) NOT NULL
+    client_id       BIGINT UNIQUE NOT NULL REFERENCES carshop_storage.user (user_id),
+    last_order_date DATE
 );
 
 CREATE TABLE carshop_storage.producer
 (
-    producer_id            BIGSERIAL PRIMARY KEY,
+    producer_id   BIGSERIAL PRIMARY KEY,
     producer_name VARCHAR(30) NOT NULL,
     country_name  VARCHAR(20)
 );
 
 CREATE TABLE carshop_storage.car
 (
-    car_id            BIGSERIAL PRIMARY KEY,
+    car_id        BIGSERIAL PRIMARY KEY,
     brand         VARCHAR(20) NOT NULL,
     model         VARCHAR(20) NOT NULL,
     car_body_type VARCHAR(10),
@@ -62,7 +62,7 @@ CREATE TABLE carshop_storage.car
 
 CREATE TABLE carshop_storage.spare_part
 (
-    spare_part_id              BIGSERIAL PRIMARY KEY,
+    spare_part_id   BIGSERIAL PRIMARY KEY,
     spare_part_name VARCHAR(30) NOT NULL,
     vendor_code     VARCHAR(30),
     producer_id     BIGINT REFERENCES carshop_storage.producer (producer_id),
@@ -80,7 +80,7 @@ CREATE TABLE carshop_storage.spare_part_car
 
 CREATE TABLE carshop_storage.order
 (
-    order_id           BIGSERIAL PRIMARY KEY,
+    order_id     BIGSERIAL PRIMARY KEY,
     client_id    BIGINT REFERENCES carshop_storage.client (client_id),
     date         DATE,
     payment_form VARCHAR(20)
@@ -93,17 +93,17 @@ CREATE TABLE carshop_storage.order_spare_part
     UNIQUE (order_id, spare_part_id)
 );
 
-INSERT INTO carshop_storage.user (login, password, email)
-VALUES ('Kimi_Raikkonen', 'Iceman', 'kimi@gmail.com'),
-       ('Sebastian_Vettel', 'Finger', 'finger@gmail.com'),
-       ('Alen_Prost', 'Professeur', 'profi@gmail.com'),
-       ('Ronnie', 'Rocket', 'snoocker-club@gmail.com'),
-       ('Niki_Lauda', 'Rat', 'rat@gmail.com'),
-       ('James_Hunt', 'Hunt_the_shunt', 'jamesy@gmail.com'),
-       ('Fanhio', 'Maestro', 'maestro@gmail.com'),
-       ('Mansell', 'Lion', 'notfinger@gmail.com'),
-       ('Niko_Rosberg', 'Brithney', 'niko@gmail.com'),
-       ('Jack_Brabham', 'Black_Jack', 'jackie@gmail.com');
+INSERT INTO carshop_storage.user (login, password, email, role)
+VALUES ('Kimi_Raikkonen', 'Iceman', 'kimi@gmail.com', 'Admin'),
+       ('Sebastian_Vettel', 'Finger', 'finger@gmail.com', 'Simple user'),
+       ('Alen_Prost', 'Professeur', 'profi@gmail.com', 'Simple user'),
+       ('Ronnie', 'Rocket', 'snoocker-club@gmail.com', 'Admin'),
+       ('Niki_Lauda', 'Rat', 'rat@gmail.com', 'Simple user'),
+       ('James_Hunt', 'Hunt_the_shunt', 'jamesy@gmail.com', 'Simple user'),
+       ('Fanhio', 'Maestro', 'maestro@gmail.com', 'Admin'),
+       ('Mansell', 'Lion', 'notfinger@gmail.com', 'Simple user'),
+       ('Niko_Rosberg', 'Brithney', 'niko@gmail.com', 'Simple user'),
+       ('Jack_Brabham', 'Black_Jack', 'jackie@gmail.com', 'Simple user');
 
 INSERT INTO carshop_storage.user_info (user_id, name, surname, age, phone_number, hobby, birth_date)
 VALUES (1, 'Kimi', 'Raikkonen', 40, '2434-324-234', 'races, dogs, reading', '1980-10-17'),
@@ -118,18 +118,18 @@ VALUES (1, 'Kimi', 'Raikkonen', 40, '2434-324-234', 'races, dogs, reading', '198
        (10, 'Jack', 'Brabham', 94, '2435-167-754', 'dances', '1926-04-02');
 
 INSERT INTO carshop_storage.admin (admin_id, salary, role)
-VALUES (7, 5000.0, 'Main admin'),
-       (1, 3500.0, 'Admin'),
-       (4, 3000.0, 'Admin');
+VALUES (7, 5000, 'Main admin'),
+       (1, 3500, 'Admin'),
+       (4, 3000, 'Admin');
 
-INSERT INTO carshop_storage.client (client_id, last_order_date, role)
-VALUES (2, '2020-12-23', 'Ordinary client'),
-       (3, '2020-12-16', 'Ordinary client'),
-       (5, '2021-01-14', 'Ordinary client'),
-       (6, '2021-02-15', 'Ordinary client'),
-       (8, '2021-02-18', 'Ordinary client'),
-       (9, '2020-11-11', 'Ordinary client'),
-       (10, '2020-09-28', 'Ordinary client');
+INSERT INTO carshop_storage.client (client_id, last_order_date)
+VALUES (2, '2020-12-23'),
+       (3, '2020-12-16'),
+       (5, '2021-01-14'),
+       (6, '2021-02-15'),
+       (8, '2021-02-18'),
+       (9, '2020-11-11'),
+       (10, '2020-09-28');
 
 INSERT INTO carshop_storage.producer (producer_name, country_name)
 VALUES ('Pirelli', 'Italy'),

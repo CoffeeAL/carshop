@@ -37,21 +37,21 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties hibernateProperties) {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
+//        vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean managerFactory = new LocalContainerEntityManagerFactoryBean();
         managerFactory.setJpaVendorAdapter(vendorAdapter);
         managerFactory.setPackagesToScan("com.loiko.alex");
         managerFactory.setDataSource(dataSource);
-        managerFactory.setJpaProperties(jpaProperties);
+        managerFactory.setJpaProperties(hibernateProperties);
         return managerFactory;
     }
 
     @Bean
-    public Properties jpaProperties(@Value("classpath:hibernate.properties") Resource hibernateProperties) throws IOException {
+    public Properties hibernateProperties(@Value("classpath:hibernate.properties") Resource resource) throws IOException {
         Properties properties = new Properties();
-        properties.load(hibernateProperties.getInputStream());
+        properties.load(resource.getInputStream());
         return properties;
     }
 
