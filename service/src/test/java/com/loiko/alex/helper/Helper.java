@@ -14,7 +14,6 @@ import com.loiko.alex.user.Admin;
 import com.loiko.alex.user.Client;
 import com.loiko.alex.user.User;
 import com.loiko.alex.user.role.AdminRole;
-import com.loiko.alex.user.role.ClientRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -56,16 +55,16 @@ public class Helper {
         EntityManager entityManager = managerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        User kimi = Client.builder().email("kimikimi@gmail.com").login("Iceman").password("kimi").role(ClientRole.ORDINARY_CLIENT).build();
-        User fernando = Client.builder().email("fern@gmail.com").login("Fernando").password("fernando").role(ClientRole.ORDINARY_CLIENT).build();
-        User michael = Client.builder().email("micha@gmail.com").login("Red baron").password("Michael").role(ClientRole.VIP_CLIENT).build();
+        User kimi = Client.builder().email("kimikimi@gmail.com").login("Iceman").password("kimi").build();
+        User fernando = Client.builder().email("fern@gmail.com").login("Fernando").password("fernando").build();
+        User michael = Client.builder().email("micha@gmail.com").login("Red baron").password("Michael").build();
         entityManager.persist(kimi);
         entityManager.persist(fernando);
         entityManager.persist(michael);
 
-        User ayrton = Admin.builder().email("ayr@gmail.com").login("Ayrton").password("ayrton").salary(500.00).adminRole(AdminRole.MAIN_ADMIN).build();
-        User niki = Admin.builder().email("rat@gmail.com").login("Rat").password("niki").salary(350.5).adminRole(AdminRole.ADMIN).build();
-        User james = Admin.builder().email("jamy@gmail.com").login("James").password("james").salary(450.0).adminRole(AdminRole.ADMIN).build();
+        User ayrton = Admin.builder().email("ayr@gmail.com").login("Ayrton").password("ayrton").salary(500).adminRole(AdminRole.MAIN_ADMIN).build();
+        User niki = Admin.builder().email("rat@gmail.com").login("Rat").password("niki").salary(350).adminRole(AdminRole.ADMIN).build();
+        User james = Admin.builder().email("jamy@gmail.com").login("James").password("james").salary(450).adminRole(AdminRole.ADMIN).build();
         entityManager.persist(ayrton);
         entityManager.persist(niki);
         entityManager.persist(james);

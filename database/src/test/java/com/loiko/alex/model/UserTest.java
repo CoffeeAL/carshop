@@ -4,7 +4,6 @@ import com.loiko.alex.TestConfig;
 import com.loiko.alex.repository.UserRepository;
 import com.loiko.alex.user.User;
 import com.loiko.alex.util.Helper;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

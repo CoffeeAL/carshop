@@ -17,6 +17,6 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class AdminDto {
 
-    private Double salary;
+    private Integer salary;
     private AdminRole adminRole;
 }

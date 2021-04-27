@@ -1,6 +1,6 @@
 package com.loiko.alex.user;
 
-import com.loiko.alex.user.role.ClientRole;
+import com.loiko.alex.user.role.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +10,6 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -29,13 +27,8 @@ public class Client extends User {
     @Column(name = "last_order_date")
     private LocalDate lastOrderDate;
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ClientRole role;
-
     @Builder
-    public Client(String login, String password, String email, ClientRole role) {
-        super(login, password, email);
-        this.role = role;
+    public Client(String login, String password, String email) {
+        super(login, password, email, UserRole.SIMPLE_USER);
     }
 }

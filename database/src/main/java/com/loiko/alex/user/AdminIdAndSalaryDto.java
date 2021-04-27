@@ -16,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class AdminIdAndSalaryDto {
 
     private Long id;
-    private Double salary;
+    private Integer salary;
 }

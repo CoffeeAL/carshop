@@ -2,6 +2,7 @@ package com.loiko.alex.user;
 
 import com.loiko.alex.common.BaseEntityImpl;
 import com.loiko.alex.order.Orders;
+import com.loiko.alex.user.role.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,8 @@ import lombok.ToString;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
@@ -38,7 +41,7 @@ public class User extends BaseEntityImpl<Long> {
     @Column(name = "login", unique = true, nullable = false)
     private String login;
 
-    @Column(name = "password", unique = true, nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "email", unique = true, nullable = false)
@@ -47,12 +50,17 @@ public class User extends BaseEntityImpl<Long> {
     @OneToOne(mappedBy = "user")
     private UserInfo userInfo;
 
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Orders> orders = new HashSet<>();
 
-    public User(String login, String password, String email) {
+    public User(String login, String password, String email, UserRole role) {
         this.login = login;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 }
